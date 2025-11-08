@@ -23,13 +23,22 @@ class CustomNavigatorbar extends StatelessWidget {
       elevation: 0,
 
       items: <BottomNavigationBarItem>[
+ 
         BottomNavigationBarItem(
           icon: Icon(Icons.map), 
           label: 'Mapa'),
+ 
         BottomNavigationBarItem(
           icon: Icon(Icons.compass_calibration),
           label: 'Direcciones',
         ),
+
+        BottomNavigationBarItem(
+          icon: Icon(Icons.pedal_bike),
+          label: 'Otra Opcion',
+        ),
+ 
+
       ],
     );
   }

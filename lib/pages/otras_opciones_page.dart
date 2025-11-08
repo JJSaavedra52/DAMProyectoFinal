@@ -1,15 +1,16 @@
 /*
 import 'package:flutter/material.dart';
 
-class MapasPage extends StatelessWidget {
+class OtraPage extends StatelessWidget {
    
-  const MapasPage({super.key});
+  const OtraPage({super.key});
   
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text('Mapas Page'),
-
+    return const Scaffold(
+      body: Center(
+         child: Text('Otra Page'),
+      ),
     );
   }
 }
@@ -19,14 +20,15 @@ import 'package:flutter/material.dart';
 import 'package:qr_reader/widgets/scan_tiles.dart';
 
 
-class MapasPage extends StatelessWidget {
-  const MapasPage({super.key});
-
+class OtraPage extends StatelessWidget {
+  const OtraPage({super.key});
 
   @override
   Widget build(BuildContext context) {
 
-    return ScanTiles(tipo: 'geo');
+    return ScanTiles(tipo: 'otro');
   
   }
+
+
 }

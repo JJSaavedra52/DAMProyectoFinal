@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_reader/pages/direcciones_page.dart';
 import 'package:qr_reader/pages/mapas_page.dart';
+import 'package:qr_reader/pages/otras_opciones_page.dart';
+import 'package:qr_reader/providers/scan_list_provider.dart';
 import 'package:qr_reader/providers/ui_provider.dart';
 import 'package:qr_reader/widgets/custom_navigatorbar.dart';
 import 'package:qr_reader/widgets/scan_button.dart';
@@ -14,17 +16,21 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Scaffold(
+
       appBar: AppBar(
 
         elevation: 0,
         title: Text('Historial'),
+        centerTitle: true,
+                
+        backgroundColor: Colors.deepPurple,
 
         actions: [
           IconButton(
-            icon: Icon(Icons.delete_forever),
+            icon: Icon(Icons.delete_forever,color: Colors.red),
             onPressed: () {
-              //Provider.of<ScanListProvider>(context, listen: false)
-              //  .borrarTodos();
+              Provider.of<ScanListProvider>(context, listen: false)
+                .borrarTodos();
             },
           ),
         ],
@@ -40,8 +46,9 @@ class HomePage extends StatelessWidget {
 
 
       bottomNavigationBar: CustomNavigatorbar(),
+
       floatingActionButton: ScanButton(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
 
     );
   }
@@ -74,17 +81,21 @@ class _HomePageBody extends StatelessWidget {
     //final currentIndex = uiProvider.selectedMenuOpt;
 
     // Usar el ScanListProvider
-    //final scanListProvider = Provider.of<ScanListProvider>(context, listen: false);
+    final scanListProvider = Provider.of<ScanListProvider>(context, listen: false);
 
     switch( currentIndex ) {
 
       case 0:
-        //scanListProvider.cargarScanPorTipo('geo');
+        scanListProvider.cargarScanPorTipo('geo');
         return MapasPage();
 
       case 1: 
-        //scanListProvider.cargarScanPorTipo('http');
+        scanListProvider.cargarScanPorTipo('http');
         return DireccionesPage();
+
+      case 2: 
+        scanListProvider.cargarScanPorTipo('otro');
+        return OtraPage();
 
       default:
         return MapasPage();

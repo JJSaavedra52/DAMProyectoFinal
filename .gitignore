@@ -1,6 +1,7 @@
 # Miscellaneous
 *.class
 *.log
+*.lock
 *.pyc
 *.swp
 .DS_Store
@@ -44,10 +45,8 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
-android/
-ios/
-linux/
-macos/
-web/
+#platforms
 windows/
-*.lock
+linux/
+ios/
+macos/

@@ -36,7 +36,8 @@ class DBProvider {
           CREATE TABLE Scans(
             id INTEGER PRIMARY KEY,
             tipo TEXT,
-            valor TEXT
+            valor TEXT,
+            location TEXT
           )
         ''');
       },
@@ -63,7 +64,8 @@ class DBProvider {
           CREATE TABLE Scans(
             id INTEGER PRIMARY KEY,
             tipo TEXT,
-            valor TEXT
+            valor TEXT,
+            location TEXT            
           )
         ''');
       },
@@ -74,13 +76,14 @@ class DBProvider {
     final id = nuevoScan.id;
     final tipo = nuevoScan.tipo;
     final valor = nuevoScan.valor;
+    final location = nuevoScan.location;
 
     // Verificar la base de datos
     final db = await database;
 
     final res = await db.rawInsert('''
-      INSERT INTO Scans( id, tipo, valor )
-        VALUES( $id, '$tipo', '$valor' )
+      INSERT INTO Scans( id, tipo, valor, location )
+        VALUES( $id, '$tipo', '$valor' , '$location')
     ''');
 
     return res;

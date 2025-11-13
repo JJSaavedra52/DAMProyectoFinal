@@ -48,7 +48,7 @@ class _MapaPageState extends State<MapaPage> {
 
     final CameraPosition puntoInicial = CameraPosition(
       //target: LatLng(37.43296265331129, -122.08832357078792),
-      target: scan.getLatLng(),
+      target: getLatLng(scan),
       zoom: 17.5,
       tilt: 50,
     );
@@ -60,7 +60,7 @@ class _MapaPageState extends State<MapaPage> {
     markers.add(
       Marker(
         markerId: MarkerId('geo-location'),
-        position: scan.getLatLng()
+        position: getLatLng(scan)
         //position: LatLng(37.43296265331129, -122.08832357078792),
       ),
     );
@@ -77,7 +77,7 @@ class _MapaPageState extends State<MapaPage> {
               controller.animateCamera(
                 CameraUpdate.newCameraPosition(
                   CameraPosition(
-                    target: scan.getLatLng(),
+                    target: getLatLng(scan),
                     //target: LatLng(37.43296265331129, -122.08832357078792),
                     zoom: 17.5,
                     tilt: 50,
@@ -110,5 +110,14 @@ class _MapaPageState extends State<MapaPage> {
         },
       ),
     );
+  }
+
+  LatLng getLatLng(ScanModel scan){
+    if (scan.tipo == "geo"){
+      return scan.getLatLng();
+    }else if (scan.tipo == "otro"){
+      return scan.getLocation();
+    }
+    throw "ha ocurrido un error";
   }
 }

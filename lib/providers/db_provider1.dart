@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:qr_reader/models/location_model.dart';
 import 'package:sqflite/sqflite.dart';
 
 import 'package:qr_reader/models/scan_model.dart';
@@ -44,7 +45,8 @@ class DBProvider1 {
           CREATE TABLE Scans(
             id INTEGER PRIMARY KEY,
             tipo TEXT,
-            valor TEXT
+            valor TEXT,
+            location TEXT
           )
         ''');
       },
@@ -55,13 +57,14 @@ class DBProvider1 {
     final id = nuevoScan.id;
     final tipo = nuevoScan.tipo;
     final valor = nuevoScan.valor;
+    final location = nuevoScan.location;
 
     // Verificar la base de datos
     final db = await database;
 
     final res = await db.rawInsert('''
-      INSERT INTO Scans( id, tipo, valor )
-        VALUES( $id, '$tipo', '$valor' )
+      INSERT INTO Scans( id, tipo, valor, location )
+        VALUES( $id, '$tipo', '$valor', '$location' )
     ''');
 
     return res;

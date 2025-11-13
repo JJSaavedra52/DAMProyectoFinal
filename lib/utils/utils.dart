@@ -31,14 +31,10 @@ Future<void> launchURL(BuildContext context, ScanModel scan) async {
     }
     */
     
+  } else if (scan.tipo == 'geo' || scan.tipo == 'otro') {
+     Navigator.pushNamed(context, 'mapa', arguments: scan);
   } else {
-    if (scan.tipo == 'geo') {
-       Navigator.pushNamed(context, 'mapa', arguments: scan);
-    }
-    else{
-      
-      throw Exception('Could not launch $uriUrl');
+    throw Exception('Could not launch $uriUrl');
 
-    }
   }
 }

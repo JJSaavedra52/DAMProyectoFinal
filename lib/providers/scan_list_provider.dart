@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:qr_reader/models/location_model.dart';
 //import 'package:qr_reader/providers/db_provider.dart';
 import 'package:qr_reader/providers/db_provider1.dart';
+import 'package:qr_reader/utils/localization_service.dart';
 
 class ScanListProvider extends ChangeNotifier {
   List<ScanModel> scans = [];
   String tipoSeleccionado = 'http';
 
   Future<ScanModel> nuevoScan(String valor) async {
-
-    final nuevoScan = ScanModel(valor: valor);
+    AppLocation location = await geoLocalizar();
+    final nuevoScan = ScanModel(valor: valor, location: location.toString());
 
     final id = await DBProvider1.db.nuevoScan(nuevoScan);
     // Asignar el ID de la base de datos al modelo
@@ -43,5 +45,29 @@ class ScanListProvider extends ChangeNotifier {
 
   Future<void> borrarScanPorId(int id) async {
     await DBProvider1.db.deleteScan(id);
+  }
+
+  Future<AppLocation> geoLocalizar() async {
+    final locationService = LocationService();
+
+    // Obtener ubicación actual
+    final position = await locationService.getCurrentLocation();
+
+    if (position != null) {
+      final location = AppLocation.fromPosition(position);
+      print('Ubicación obtenida: ${location.toString()}');
+
+      _useLocationForSomething(location);
+      return location;
+    } else {
+      print('No se pudo obtener la ubicación');
+    }
+    throw "Ha ocurrido un error";
+  }
+
+  void _useLocationForSomething(AppLocation location) {
+    // Hacer algo con la ubicación
+    print('Latitud: ${location.latitude}');
+    print('Longitud: ${location.longitude}');
   }
 }

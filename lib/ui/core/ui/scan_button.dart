@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
-import 'package:qr_reader/pages/qr_scanner_page.dart';
-import 'package:qr_reader/providers/scan_list_provider.dart';
-import 'package:qr_reader/utils/utils.dart';
+import 'package:qr_reader/app_export.dart';
 
 class ScanButton extends StatelessWidget {
   const ScanButton({super.key});

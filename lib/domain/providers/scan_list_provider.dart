@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:qr_reader/models/location_model.dart';
-//import 'package:qr_reader/providers/db_provider.dart';
-import 'package:qr_reader/providers/db_provider1.dart';
-import 'package:qr_reader/utils/localization_service.dart';
+import 'package:qr_reader/app_export.dart';
 
 class ScanListProvider extends ChangeNotifier {
   List<ScanModel> scans = [];

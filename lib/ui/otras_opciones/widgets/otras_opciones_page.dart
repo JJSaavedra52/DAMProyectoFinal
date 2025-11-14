@@ -17,7 +17,7 @@ class OtraPage extends StatelessWidget {
 */
 
 import 'package:flutter/material.dart';
-import 'package:qr_reader/widgets/scan_tiles.dart';
+import 'package:qr_reader/ui/core/ui/scan_tiles.dart';
 
 class OtraPage extends StatelessWidget {
   const OtraPage({super.key});

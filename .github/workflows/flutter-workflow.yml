@@ -1,0 +1,30 @@
+name: Flutter CI with Notifications
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Run tests
+        run: flutter test
+
+      - name: Notify on success
+        if: success()
+        run: |
+          echo "Build successful! 🎉"
+
+      - name: Notify on failure
+        if: failure()
+        run: |
+          echo "Build failed! ❌"

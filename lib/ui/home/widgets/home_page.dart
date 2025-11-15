@@ -1,13 +1,7 @@
 //fls
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:qr_reader/pages/direcciones_page.dart';
-import 'package:qr_reader/pages/mapas_page.dart';
-import 'package:qr_reader/pages/otras_opciones_page.dart';
-import 'package:qr_reader/providers/scan_list_provider.dart';
-import 'package:qr_reader/providers/ui_provider.dart';
-import 'package:qr_reader/widgets/custom_navigatorbar.dart';
-import 'package:qr_reader/widgets/scan_button.dart';
+import 'package:qr_reader/app_export.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -45,7 +39,7 @@ class HomePage extends StatelessWidget {
 
 
 
-      bottomNavigationBar: CustomNavigatorbar(),
+      bottomNavigationBar: CustomNavigatorBar(),
 
       floatingActionButton: ScanButton(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,

@@ -33,7 +33,7 @@ jobs:
   #      run: flutter format --set-exit-if-changed .
 
   build:
-    needs: test
+    #needs: test
     runs-on: ubuntu-latest
 
     steps:

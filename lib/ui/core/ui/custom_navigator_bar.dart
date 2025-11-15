@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:qr_reader/domain/providers/ui_provider.dart';
+import 'package:qr_reader/app_export.dart';
 
 class CustomNavigatorBar extends StatelessWidget {
   const CustomNavigatorBar({super.key});

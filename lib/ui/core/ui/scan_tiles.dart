@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:qr_reader/domain/providers/scan_list_provider.dart';
-import 'package:qr_reader/utils/utils.dart';
+import 'package:qr_reader/app_export.dart';
 
 class ScanTiles extends StatelessWidget {
   

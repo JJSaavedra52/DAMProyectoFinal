@@ -25,11 +25,14 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
+      - name: Create platforms Web
+        run: flutter create .
+
       - name: Build Web
         run: flutter build web --release
 
       #- name: Upload web build
-      #  uses: actions/upload-artifact@v3
+      #  uses: actions/upload-artifact@v4
       #  with:
       #    name: web-build
       #    path: build/web/
@@ -49,11 +52,14 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
+      - name: Create platforms Android
+        run: flutter create .
+
       - name: Build Android
         run: flutter build apk --release
 
       #- name: Upload APK
-      #  uses: actions/upload-artifact@v3
+      #  uses: actions/upload-artifact@v4
       #  with:
       #    name: android-apk
       #    path: build/app/outputs/flutter-apk/app-release.apk
@@ -73,11 +79,14 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
+      - name: Create platforms ios
+        run: flutter create .
+
       - name: Build ios
         run: flutter build ios --release --no-codesign
 
       #- name: Upload iOS build
-      #  uses: actions/upload-artifact@v3
+      #  uses: actions/upload-artifact@v4
       #  with:
       #    name: ios-build
       #    path: build/ios/

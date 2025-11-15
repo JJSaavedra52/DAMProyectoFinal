@@ -16,7 +16,7 @@ class DireccionesPage extends StatelessWidget {
 */
 
 import 'package:flutter/material.dart';
-import 'package:qr_reader/ui/core/ui/scan_tiles.dart';
+import 'package:qr_reader/app_export.dart';
 
 
 class DireccionesPage extends StatelessWidget {

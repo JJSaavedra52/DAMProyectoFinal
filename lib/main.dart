@@ -32,14 +32,8 @@ class MyApp extends StatelessWidget {
 
         routes: {'home': (_) => HomePage(), 
                  'mapa': (_) => MapaPage()},
-        theme: ThemeData(
-          primaryColor: Colors.deepPurple,
-          floatingActionButtonTheme: FloatingActionButtonThemeData(
-            backgroundColor: Colors.deepPurple,
-          ),
-        ),
+        theme: ThemeDefault.defaultTheme(),
       ),
     );
-
   }
 }

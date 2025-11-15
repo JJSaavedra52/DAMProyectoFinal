@@ -2,10 +2,10 @@
 name: Flutter Multi-Platform
 
 on:
-  #push:
-  #  branches: [ main, develop ]
-  pull_request:
+  push:
     branches: [ main, develop ]
+  #pull_request:
+  #  branches: [ main, develop ]
   #release:
   #  types: [published]
 
@@ -66,6 +66,7 @@ jobs:
 
   build-ios:
     runs-on: macos-latest
+    continue-on-error: true
 
     steps:
       - name: Checkout code

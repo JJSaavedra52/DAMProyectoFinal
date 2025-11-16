@@ -1,0 +1,35 @@
+# .github/workflows/flutter-matrix.yml
+name: Flutter Matrix CI
+
+on: [ push ]
+  #push:
+  #  branches: [ main, develop ]
+  #pull_request:
+  #  branches: [ main, develop ]
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        flutter-version: ['3.38.1']
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ matrix.flutter-version }}
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      #- name: Analyze
+      #  run: flutter analyze
+
+      #- name: Run tests
+      #  run: flutter test

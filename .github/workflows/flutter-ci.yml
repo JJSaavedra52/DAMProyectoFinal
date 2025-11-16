@@ -1,7 +1,7 @@
 # .github/workflows/flutter-ci.yml
 name: Flutter CI
 
-on: [ push ]
+on: [push]
   #push:
   #  branches: [ main, develop ]
   #pull_request:

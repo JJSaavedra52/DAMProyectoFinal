@@ -1,9 +1,9 @@
 # .github/workflows/flutter-matrix.yml
 name: Flutter Matrix CI
 
-on:
-  push:
-    branches: [ main, develop ]
+on: [ push ]
+  #push:
+  #  branches: [ main, develop ]
   #pull_request:
   #  branches: [ main, develop ]
 
@@ -12,7 +12,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
-        flutter-version: ['3.35.7']
+        flutter-version: ['3.38.1']
 
     runs-on: ${{ matrix.os }}
 
@@ -22,8 +22,8 @@ jobs:
 
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
-        #with:
-        #  flutter-version: ${{ matrix.flutter-version }}
+        with:
+          flutter-version: ${{ matrix.flutter-version }}
 
       - name: Install dependencies
         run: flutter pub get

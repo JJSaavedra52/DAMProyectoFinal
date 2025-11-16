@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:qr_reader/providers/db_provider.dart';
+import 'package:qr_reader/app_export.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 /*

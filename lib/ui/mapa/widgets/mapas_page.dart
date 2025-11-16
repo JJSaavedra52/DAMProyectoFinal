@@ -16,7 +16,7 @@ class MapasPage extends StatelessWidget {
 */
 
 import 'package:flutter/material.dart';
-import 'package:qr_reader/widgets/scan_tiles.dart';
+import 'package:qr_reader/app_export.dart';
 
 
 class MapasPage extends StatelessWidget {

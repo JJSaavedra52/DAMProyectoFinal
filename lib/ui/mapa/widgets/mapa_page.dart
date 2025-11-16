@@ -21,7 +21,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-import 'package:qr_reader/providers/db_provider.dart';
+import 'package:qr_reader/app_export.dart';
 
 class MapaPage extends StatefulWidget {
   const MapaPage({super.key});

@@ -1,0 +1,1 @@
+export 'package:qr_reader/ui/qr_scanner/widgets/qr_scanner_page.dart';

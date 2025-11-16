@@ -1,0 +1,1 @@
+export 'package:qr_reader/ui/direcciones/widgets/widgets_exports.dart';

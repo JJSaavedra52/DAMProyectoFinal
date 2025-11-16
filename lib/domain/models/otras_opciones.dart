@@ -1,4 +1,4 @@
-import 'package:qr_reader/models/location_model.dart';
+import 'package:qr_reader/app_export.dart';
 
 class OtrasOpciones{
   String? value;

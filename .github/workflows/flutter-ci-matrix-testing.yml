@@ -1,7 +1,7 @@
 # .github/workflows/flutter-matrix.yml
 name: Flutter Matrix CI
 
-on: [ push ]
+on: [push]
   #push:
   #  branches: [ main, develop ]
   #pull_request:

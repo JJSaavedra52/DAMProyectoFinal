@@ -1,7 +1,7 @@
 # .github/workflows/flutter-ci.yml
 name: Flutter CI
 
-on: [push]
+on: [ push ]
   #push:
   #  branches: [ main, develop ]
   #pull_request:
@@ -47,6 +47,9 @@ jobs:
 
       - name: Install dependencies
         run: flutter pub get
+
+      - name: Create platforms Web
+        run: flutter create .
 
       - name: Build web
         run: flutter build web --release

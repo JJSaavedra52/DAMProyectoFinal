@@ -25,14 +25,14 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      #- name: Build Web
-      #  run: flutter build web --release
+      - name: Build Web
+        run: flutter build web --release
 
-      #- name: Upload web build
-      #  uses: actions/upload-artifact@v3
-      #  with:
-      #    name: web-build
-      #    path: build/web/
+      - name: Upload web build
+        uses: actions/upload-artifact@v3
+        with:
+          name: web-build
+          path: build/web/
 
   build-android:
     runs-on: ubuntu-latest
@@ -49,14 +49,14 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      #- name: Build Android
-      #  run: flutter build apk --release
+      - name: Build Android
+        run: flutter build apk --release
 
-      #- name: Upload APK
-      #  uses: actions/upload-artifact@v3
-      #  with:
-      #    name: android-apk
-      #    path: build/app/outputs/flutter-apk/app-release.apk
+      - name: Upload APK
+        uses: actions/upload-artifact@v3
+        with:
+          name: android-apk
+          path: build/app/outputs/flutter-apk/app-release.apk
 
   build-ios:
     runs-on: macos-latest

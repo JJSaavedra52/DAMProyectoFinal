@@ -1,4 +1,3 @@
-//fls
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_reader/app_export.dart';
@@ -90,6 +89,10 @@ class _HomePageBody extends StatelessWidget {
       case 2: 
         scanListProvider.cargarScanPorTipo('otro');
         return OtraPage();
+
+      case 3:
+        scanListProvider.cargarScanPorTipo('test');
+        return MapPuntoAPunto();
 
       default:
         return MapasPage();

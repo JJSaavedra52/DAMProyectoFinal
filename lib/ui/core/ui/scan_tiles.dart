@@ -3,15 +3,11 @@ import 'package:provider/provider.dart';
 import 'package:qr_reader/app_export.dart';
 
 class ScanTiles extends StatelessWidget {
-  
   final String tipo;
-
   const ScanTiles({super.key,  required this.tipo });
-
 
   @override
   Widget build(BuildContext context) {
-    
     final scanListProvider = Provider.of<ScanListProvider>(context);
     final scans = scanListProvider.scans;
 
@@ -40,10 +36,11 @@ class ScanTiles extends StatelessWidget {
             color: Theme.of(context).primaryColor 
           ),
           title: Text( scans[i].valor ),
-          subtitle: Row(
+          subtitle: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               (Text( "${scans[i].id}\t")),
-              if (tipo == "otro" && scans[i].location != null) (Text( scans[i].location! ))
+              if (scans[i].location != null) (Text( scans[i].location! ))
             ],
           ),
           trailing: Icon( Icons.keyboard_arrow_right, color: Colors.grey ),
@@ -51,7 +48,5 @@ class ScanTiles extends StatelessWidget {
         ),
       )
     );
-
-
   }
 }

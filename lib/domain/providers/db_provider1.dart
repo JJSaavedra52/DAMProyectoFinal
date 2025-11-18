@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:qr_reader/app_export.dart';
 import 'package:sqflite/sqflite.dart';
@@ -13,20 +14,24 @@ class DBProvider1 {
     //if(_database != null) return _database;
 
     // Get a location using getDatabasesPath
-    var databasesPath = await getDatabasesPath();
-    String path = join(databasesPath, 'ScansDB.db');
+    try {
+      var databasesPath = await getDatabasesPath();
+      String path = join(databasesPath, 'ScansDB.db');
 
-    /*
-    Directory documentsDirectory = await getApplicationDocumentsDirectory();
-    final path1 = join(documentsDirectory.path, 'ScansDB.db');
-    print(path1);
-    */
+      /*
+      Directory documentsDirectory = await getApplicationDocumentsDirectory();
+      final path1 = join(documentsDirectory.path, 'ScansDB.db');
+      print(path1);
+      */
 
-    print(path);
+      debugPrint(path);
 
-    _database = await open(path);
+      _database = await open(path);
 
-    return _database;
+      return _database;
+    } catch (ex){
+      throw Exception("No se conectó a la bd");
+    }
   }
 
   Future open(String path) async {

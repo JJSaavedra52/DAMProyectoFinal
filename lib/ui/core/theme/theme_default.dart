@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ThemeDefault {
+
   static ThemeData defaultTheme() => ThemeData(
     //primaryColor: Colors.deepPurple,
     colorScheme: ColorScheme.fromSeed(
@@ -10,6 +11,7 @@ class ThemeDefault {
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       backgroundColor: Colors.deepPurple,
     ),
+    primaryColor: Colors.grey
   );
 
   static ThemeData oldTheme() => ThemeData(

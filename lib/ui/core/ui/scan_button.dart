@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_reader/app_export.dart';
 
@@ -15,8 +13,6 @@ class ScanButton extends StatelessWidget {
 
       onPressed: () async {
 
-
-        
         final result = await Navigator.push(
           context,
           MaterialPageRoute(builder: (_) => const QRScannerPage()),

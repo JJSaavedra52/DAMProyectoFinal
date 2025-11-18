@@ -1,35 +1,13 @@
-/*
-import 'package:flutter/material.dart';
-
-class MapaPage extends StatelessWidget {
-   
-  const MapaPage({super.key});
-  
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-         child: Text('MapaPage'),
-      ),
-    );
-  }
-}
-*/
-
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-
 import 'package:qr_reader/app_export.dart';
 
 class MapaPage extends StatefulWidget {
   const MapaPage({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
-  _MapaPageState createState() => _MapaPageState();
-
+  createState() => _MapaPageState();
   //State<MapaPage> createState() => _MapaSampleState();
 }
 
@@ -46,7 +24,7 @@ class _MapaPageState extends State<MapaPage> {
     //final args = ModalRoute.of(context)?.settings.arguments;
     //if (args is ScanModel) {
 
-    final CameraPosition puntoInicial = CameraPosition(
+    final puntoInicial = CameraPosition(
       //target: LatLng(37.43296265331129, -122.08832357078792),
       target: getLatLng(scan),
       zoom: 17.5,
@@ -56,7 +34,7 @@ class _MapaPageState extends State<MapaPage> {
     // Marcadores
     //Set<Marker> markers = Set<Marker>();
     Set<Marker> markers = <Marker>{};
-    
+
     markers.add(
       Marker(
         markerId: MarkerId('geo-location'),

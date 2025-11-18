@@ -1,11 +1,3 @@
-//mateapp
-
-//Installar provider
-//flutter pub add provider
-//This will add a line like this to your package's pubspec.yaml (and run an implicit flutter pub get):
-//dependencies:
-//  provider: ^6.1.5+1
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_reader/app_export.dart';
@@ -27,11 +19,8 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'QR Reader',
-
         initialRoute: 'home',
-
-        routes: {'home': (_) => HomePage(), 
-                 'mapa': (_) => MapaPage()},
+        routes: {'home': (_) => HomePage(), 'mapa': (_) => MapaPage(), 'test': (_) => MapPuntoAPunto()},
         theme: ThemeDefault.defaultTheme(),
       ),
     );

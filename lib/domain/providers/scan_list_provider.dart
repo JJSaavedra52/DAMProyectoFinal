@@ -44,7 +44,7 @@ class ScanListProvider extends ChangeNotifier {
     await DBProvider1.db.deleteScan(id);
   }
 
-  Future<AppLocation> geoLocalizar() async {
+  static Future<AppLocation> geoLocalizar() async {
     final locationService = LocationService();
 
     // Obtener ubicación actual
@@ -52,19 +52,19 @@ class ScanListProvider extends ChangeNotifier {
 
     if (position != null) {
       final location = AppLocation.fromPosition(position);
-      print('Ubicación obtenida: ${location.toString()}');
+      debugPrint('Ubicación obtenida: ${location.toString()}');
 
       _useLocationForSomething(location);
       return location;
     } else {
-      print('No se pudo obtener la ubicación');
+      debugPrint('No se pudo obtener la ubicación');
     }
     throw "Ha ocurrido un error";
   }
 
-  void _useLocationForSomething(AppLocation location) {
+  static void _useLocationForSomething(AppLocation location) {
     // Hacer algo con la ubicación
-    print('Latitud: ${location.latitude}');
-    print('Longitud: ${location.longitude}');
+    debugPrint('Latitud: ${location.latitude}');
+    debugPrint('Longitud: ${location.longitude}');
   }
 }

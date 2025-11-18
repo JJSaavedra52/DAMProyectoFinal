@@ -1,0 +1,1 @@
+export 'package:qr_reader/ui/core/theme/theme_default.dart';

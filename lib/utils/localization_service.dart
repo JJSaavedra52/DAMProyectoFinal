@@ -1,5 +1,5 @@
+import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 class LocationService {
   // Instancia singleton
@@ -26,7 +26,7 @@ class LocationService {
 
       return position;
     } catch (e) {
-      print('Error obteniendo ubicación: $e');
+      debugPrint('Error obteniendo ubicación: $e');
       return null;
     }
   }
@@ -65,7 +65,7 @@ class LocationService {
       final position = await Geolocator.getLastKnownPosition();
       return position;
     } catch (e) {
-      print('Error obteniendo última ubicación conocida: $e');
+      debugPrint('Error obteniendo última ubicación conocida: $e');
       return null;
     }
   }

@@ -1,0 +1,1 @@
+export 'package:qr_reader/ui/map_punto_a_punto/widgets/test.dart';

@@ -87,12 +87,8 @@ class _HomePageBody extends StatelessWidget {
         scanListProvider.cargarScanPorTipo('otro');
         return OtraPage();
 
-      case 3:
-        scanListProvider.cargarScanPorTipo('test');
-        return MapPuntoAPunto();
-
       default:
-        return MapasPage();
+        return MapPuntoAPunto();
     }
   }
 }

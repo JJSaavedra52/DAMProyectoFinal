@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         initialRoute: 'user', // start app on the login/register screen
         routes: {
           'home': (_) => HomePage(),
-          'mapa': (_) => MapaPage(),
+          //'mapa': (_) => MapaPage(),
           'mapa_punto_a_punto': (_) => MapPuntoAPunto(),
           'user': (_) => const UserPage(),
           'history': (_) => const ScanHistoryPage(),

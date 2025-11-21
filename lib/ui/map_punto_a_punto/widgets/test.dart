@@ -45,10 +45,10 @@ class _MapScreenState extends State<MapPuntoAPunto> {
       }
     });
   }*/
-/*
+
   // Obtener direcciones y ruta entre puntos
   Future<void> _getRouteDirections(LatLng origin, LatLng destination) async {
-    final String apiKey = 'AIzaSyDQZ6vfLniJwM7ZoYOB5mHwldcCTvFrtEM';
+    final String apiKey = 'AIzaSyAYjfOTeSNSCdiLsh0BJmuzURcFv9rrGRc';
     final String url =
         'https://maps.googleapis.com/maps/api/directions/json?'
         'origin=${origin.latitude},${origin.longitude}'
@@ -89,7 +89,7 @@ class _MapScreenState extends State<MapPuntoAPunto> {
       debugPrint('Error obteniendo ruta: $e');
     }
   }
-*/
+
 
   // Decodificar poliLínea (algoritmo de Google Maps)
   List<PointLatLng> _decodePolyline(String encoded) {

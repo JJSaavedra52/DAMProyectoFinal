@@ -16,23 +16,73 @@ class _MapaPageState extends State<MapaPage> {
 
   @override
   Widget build(BuildContext context) {
-    // Expecting a ScanModel passed as argument
-    final scan = ModalRoute.of(context)!.settings.arguments as ScanModel;
+    final args = ModalRoute.of(context)!.settings.arguments;
+    LatLng latLng;
+    String title = 'Mapa';
+    String tipo = 'geo';
+    String valor = '';
 
-    final LatLng latLng = getLatLng(scan);
+    if (args is ScanModel) {
+      // handle nullable fields in ScanModel safely
+      tipo = args.tipo ?? 'geo';
+      valor = args.valor ?? '';
+      try {
+        latLng = _getLatLngFromScan(args);
+        title = 'Mapa - $tipo';
+      } catch (e) {
+        return Scaffold(
+          appBar: AppBar(title: const Text('Mapa')),
+          body: const Center(
+            child: Text('Scan inválido: coordenadas no disponibles'),
+          ),
+        );
+      }
+    } else if (args is String && args.trim().toLowerCase().startsWith('geo')) {
+      final s = args.trim();
+      // accept both "geo:lat,lng" and "geo: lat,lng"
+      final coordPart = s.contains(':') ? s.split(':').sublist(1).join(':') : s;
+      final parts = coordPart.split(',');
+      if (parts.length < 2) {
+        return Scaffold(
+          appBar: AppBar(title: const Text('Mapa')),
+          body: const Center(child: Text('Formato geo inválido')),
+        );
+      }
+      try {
+        final lat = double.parse(parts[0].trim());
+        final lng = double.parse(parts[1].trim());
+        latLng = LatLng(lat, lng);
+        valor = 'geo:$lat,$lng';
+        title = 'Mapa - geo';
+        tipo = 'geo';
+      } catch (e) {
+        return Scaffold(
+          appBar: AppBar(title: const Text('Mapa')),
+          body: const Center(child: Text('Formato geo inválido')),
+        );
+      }
+    } else {
+      return Scaffold(
+        appBar: AppBar(title: const Text('Mapa')),
+        body: const Center(child: Text('No se proporcionó scan válido')),
+      );
+    }
+
     final puntoInicial = CameraPosition(target: latLng, zoom: 17);
-
+    final markerId = MarkerId(
+      valor.isNotEmpty ? valor : '${latLng.latitude},${latLng.longitude}',
+    );
     final markers = <Marker>{
       Marker(
-        markerId: MarkerId(scan.id.toString()),
+        markerId: markerId,
         position: latLng,
-        infoWindow: InfoWindow(title: scan.valor, snippet: scan.tipo),
+        infoWindow: InfoWindow(title: valor, snippet: tipo),
       ),
     };
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Mapa - ${scan.tipo}'),
+        title: Text(title),
         actions: [
           IconButton(
             icon: Icon(
@@ -66,13 +116,23 @@ class _MapaPageState extends State<MapaPage> {
     );
   }
 
-  LatLng getLatLng(ScanModel scan) {
-    if (scan.tipo == "geo") {
+  LatLng _getLatLngFromScan(ScanModel scan) {
+    // prefer ScanModel helper if available
+    try {
       return scan.getLatLng();
-    } else if (scan.tipo == "otro") {
-      // adapt as needed
-      return scan.getLatLng();
+    } catch (_) {
+      // fallback: try parsing the valor field if it's geo:lat,lng
+      final v = scan.valor ?? '';
+      if (v.toLowerCase().startsWith('geo')) {
+        final coordPart = v.contains(':')
+            ? v.split(':').sublist(1).join(':')
+            : v;
+        final parts = coordPart.split(',');
+        final lat = double.parse(parts[0].trim());
+        final lng = double.parse(parts[1].trim());
+        return LatLng(lat, lng);
+      }
+      throw Exception('No coordinates found');
     }
-    throw "ha ocurrido un error";
   }
 }

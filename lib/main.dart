@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         routes: {
           'home': (_) => HomePage(),
           'mapa': (_) => MapaPage(),
-          'test': (_) => MapPuntoAPunto(),
+          'mapa_punto_a_punto': (_) => MapPuntoAPunto(),
           'user': (_) => const UserPage(),
           'history': (_) => const ScanHistoryPage(),
         },

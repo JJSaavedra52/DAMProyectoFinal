@@ -25,7 +25,7 @@ Future<void> launchURL(BuildContext context, ScanModel scan) async {
       "pointA":pointA,
       "pointB":pointB
     };
-    Navigator.pushNamed(context, 'test', arguments: exports);
+    Navigator.pushNamed(context, 'mapa_punto_a_punto', arguments: exports);
   } else if (scan.tipo == 'otro') {
     Navigator.pushNamed(context, 'mapa', arguments: scan);
   } else {

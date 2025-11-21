@@ -1,6 +1,8 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:http/http.dart' as http;
 
 class MapPuntoAPunto extends StatefulWidget {
   const MapPuntoAPunto({super.key});
@@ -48,7 +50,7 @@ class _MapScreenState extends State<MapPuntoAPunto> {
 
   // Obtener direcciones y ruta entre puntos
   Future<void> _getRouteDirections(LatLng origin, LatLng destination) async {
-    final String apiKey = 'AIzaSyAYjfOTeSNSCdiLsh0BJmuzURcFv9rrGRc';
+    final String apiKey = 'AIzaSyC9mLKWPWbZWCrvKCL8_8iAZReoWMW7c-0';
     final String url =
         'https://maps.googleapis.com/maps/api/directions/json?'
         'origin=${origin.latitude},${origin.longitude}'
@@ -182,6 +184,11 @@ class _MapScreenState extends State<MapPuntoAPunto> {
         icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
       ),
     );
+
+    // Si tenemos ambos puntos, calcular ruta
+    if (pointA != null && pointB != null) {
+      _getRouteDirections(pointA!, pointB!);
+    }
 
     return Scaffold(
       appBar: AppBar(

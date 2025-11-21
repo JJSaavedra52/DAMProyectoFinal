@@ -8,7 +8,6 @@ class MapaPage extends StatefulWidget {
 
   @override
   createState() => _MapaPageState();
-  //State<MapaPage> createState() => _MapaSampleState();
 }
 
 class _MapaPageState extends State<MapaPage> {
@@ -17,84 +16,62 @@ class _MapaPageState extends State<MapaPage> {
 
   @override
   Widget build(BuildContext context) {
-
-    //final ScanModel scan = ModalRoute.of(context).settings.arguments;
+    // Expecting a ScanModel passed as argument
     final scan = ModalRoute.of(context)!.settings.arguments as ScanModel;
 
-    //final args = ModalRoute.of(context)?.settings.arguments;
-    //if (args is ScanModel) {
+    final LatLng latLng = getLatLng(scan);
+    final puntoInicial = CameraPosition(target: latLng, zoom: 17);
 
-    final puntoInicial = CameraPosition(
-      //target: LatLng(37.43296265331129, -122.08832357078792),
-      target: getLatLng(scan),
-      zoom: 17.5,
-      tilt: 50,
-    );
-
-    // Marcadores
-    //Set<Marker> markers = Set<Marker>();
-    Set<Marker> markers = <Marker>{};
-
-    markers.add(
+    final markers = <Marker>{
       Marker(
-        markerId: MarkerId('geo-location'),
-        position: getLatLng(scan)
-        //position: LatLng(37.43296265331129, -122.08832357078792),
+        markerId: MarkerId(scan.id.toString()),
+        position: latLng,
+        infoWindow: InfoWindow(title: scan.valor, snippet: scan.tipo),
       ),
-    );
-    //}
+    };
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Mapa'),
+        title: Text('Mapa - ${scan.tipo}'),
         actions: [
           IconButton(
-            icon: Icon(Icons.location_disabled),
-            onPressed: () async {
-              final GoogleMapController controller = await _controller.future;
-              controller.animateCamera(
-                CameraUpdate.newCameraPosition(
-                  CameraPosition(
-                    target: getLatLng(scan),
-                    //target: LatLng(37.43296265331129, -122.08832357078792),
-                    zoom: 17.5,
-                    tilt: 50,
-                  ),
-                ),
-              );
-            },
+            icon: Icon(
+              mapType == MapType.normal ? Icons.satellite_alt : Icons.map,
+            ),
+            onPressed: () => setState(() {
+              mapType = mapType == MapType.normal
+                  ? MapType.hybrid
+                  : MapType.normal;
+            }),
           ),
         ],
       ),
       body: GoogleMap(
-        myLocationButtonEnabled: false,
         mapType: mapType,
-        markers: markers,
         initialCameraPosition: puntoInicial,
+        markers: markers,
         onMapCreated: (GoogleMapController controller) {
-          _controller.complete(controller);
+          if (!_controller.isCompleted) _controller.complete(controller);
         },
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.layers),
-        onPressed: () {
-          if (mapType == MapType.normal) {
-            mapType = MapType.satellite;
-          } else {
-            mapType = MapType.normal;
-          }
-
-          setState(() {});
+        child: const Icon(Icons.my_location),
+        onPressed: () async {
+          final controller = await _controller.future;
+          controller.animateCamera(
+            CameraUpdate.newCameraPosition(puntoInicial),
+          );
         },
       ),
     );
   }
 
-  LatLng getLatLng(ScanModel scan){
-    if (scan.tipo == "geo"){
+  LatLng getLatLng(ScanModel scan) {
+    if (scan.tipo == "geo") {
       return scan.getLatLng();
-    }else if (scan.tipo == "otro"){
-      return scan.getLocation();
+    } else if (scan.tipo == "otro") {
+      // adapt as needed
+      return scan.getLatLng();
     }
     throw "ha ocurrido un error";
   }

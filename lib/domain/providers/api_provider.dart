@@ -62,13 +62,15 @@ class Scan {
 }
 
 class ApiConfig {
-  // Default API base. Include the '/api' path so callers can simply append endpoints like '/usuarios'.
-  // - Android emulator: use 10.0.2.2
-  // - iOS simulator / web: localhost
-  // - Physical device: set to your PC LAN IP (e.g. http://192.168.0.100:8081/api)
-  static String apiBase = kIsWeb
-      ? 'http://localhost:8081/api'
-      : 'http://10.0.2.2:8081/api';
+  /// Default API base URL (include the `/api` path if your backend exposes routes under /api)
+  /// Change this value to point to Render deployment.
+  static String apiBase = 'https://api-dam-c206.onrender.com/api';
+
+  /// Optional helper to change base at runtime
+  static void setApiBase(String url) {
+    // keep it simple: use the provided value (caller should include /api if needed)
+    apiBase = url;
+  }
 }
 
 class ApiProvider with ChangeNotifier {
@@ -84,10 +86,7 @@ class ApiProvider with ChangeNotifier {
 
   /// Override the API base at runtime (e.g. after deployment).
   void setBaseUrl(String url) {
-    // Normalize: remove trailing slash if present
-    ApiConfig.apiBase = url.endsWith('/')
-        ? url.substring(0, url.length - 1)
-        : url;
+    ApiConfig.setApiBase(url);
     notifyListeners();
   }
 

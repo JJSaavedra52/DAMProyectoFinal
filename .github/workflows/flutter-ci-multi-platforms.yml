@@ -3,7 +3,7 @@ name: Flutter Multi-Platform
 
 on:
   push:
-    branches: [ main, develop, quality ]
+    branches: [ main, develop, quality, feat/api ]
   pull_request:
     branches: [ main, quality ]
   #release:

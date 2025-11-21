@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:qr_reader/ui/qr_scanner/widgets/qr_scanner_page.dart';
 import 'package:qr_reader/app_export.dart'; // for ScanModel if present
 

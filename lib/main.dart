@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_reader/app_export.dart';
 import 'package:qr_reader/ui/user/user_exports.dart';
+import 'package:qr_reader/ui/scan_history/scan_history_exports.dart';
 
 void main() => runApp(const MyApp());
 
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
           'mapa': (_) => MapaPage(),
           'test': (_) => MapPuntoAPunto(),
           'user': (_) => const UserPage(),
+          'history': (_) => const ScanHistoryPage(),
         },
         theme: ThemeDefault.defaultTheme(),
       ),

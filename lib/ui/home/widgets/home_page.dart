@@ -18,6 +18,10 @@ class HomePage extends StatelessWidget {
 
         actions: [
           IconButton(
+            icon: const Icon(Icons.history),
+            onPressed: () => Navigator.pushNamed(context, 'history'),
+          ),
+          IconButton(
             icon: Icon(Icons.delete_forever, color: Colors.red),
             onPressed: () {
               Provider.of<ScanListProvider>(

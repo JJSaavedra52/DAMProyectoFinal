@@ -71,8 +71,11 @@ class _ScanHistoryPageState extends State<ScanHistoryPage> {
                   subtitle: Text(_scanDate(s)),
                   trailing: Text(tipo),
                   onTap: () {
-                    // open map page (mapa_page handles Scan or geo string)
-                    Navigator.pushNamed(context, 'mapa', arguments: s);
+                    // Prefer sending the raw geo string so mapa_page parses it reliably.
+                    final geo = s.valor ?? s.location ?? s.toString();
+                    // optional: debug print to verify
+                    // debugPrint('Opening mapa with: $geo');
+                    Navigator.pushNamed(context, 'mapa', arguments: geo);
                   },
                 );
               },

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_reader/app_export.dart';
 import 'package:qr_reader/ui/qr_scanner/widgets/qr_scanner_page.dart';
@@ -53,7 +54,13 @@ class ScanButton extends StatelessWidget {
 
         // Navigate to mapa with the created ScanModel so MapaPage shows it
         try {
-          Navigator.pushNamed(context, 'mapa', arguments: nuevoScan);
+          final pointA = (await ScanListProvider.geoLocalizar()).toLatLng();
+          final pointB = nuevoScan.getLatLng();
+          Map<String, LatLng> exports = {
+            "pointA":pointA,
+            "pointB":pointB
+          };
+          Navigator.pushNamed(context, 'mapa_punto_a_punto', arguments: exports);
         } catch (_) {
           // fallback: if mapa expects a string, pass the raw string
           Navigator.pushNamed(context, 'mapa', arguments: scannedString);

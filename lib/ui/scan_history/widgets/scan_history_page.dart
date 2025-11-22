@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:qr_reader/app_export.dart';
 import 'package:qr_reader/domain/providers/api_provider.dart';
 
@@ -60,7 +61,7 @@ class _ScanHistoryPageState extends State<ScanHistoryPage> {
             return ListView.separated(
               padding: const EdgeInsets.all(8),
               itemCount: scans.length,
-              separatorBuilder: (_, __) => const Divider(),
+              separatorBuilder: (_, _) => const Divider(),
               itemBuilder: (context, i) {
                 final s = scans[i];
                 final valor = s.valor;
@@ -70,12 +71,20 @@ class _ScanHistoryPageState extends State<ScanHistoryPage> {
                   title: Text(valor),
                   subtitle: Text(_scanDate(s)),
                   trailing: Text(tipo),
-                  onTap: () {
+                  onTap: () async{
                     // Prefer sending the raw geo string so mapa_page parses it reliably.
                     final geo = s.valor ?? s.location ?? s.toString();
                     // optional: debug print to verify
                     // debugPrint('Opening mapa with: $geo');
-                    Navigator.pushNamed(context, 'mapa', arguments: geo);
+                    final scanListProvider = ScanListProvider();
+                    final nuevoScan = await scanListProvider.nuevoScan(s.valor!);
+                    final pointA = (await ScanListProvider.geoLocalizar()).toLatLng();
+                    final pointB = nuevoScan.getLatLng();
+                    Map<String, LatLng> exports = {
+                    "pointA":pointA,
+                    "pointB":pointB
+                    };
+                    Navigator.pushNamed(context, 'mapa_punto_a_punto', arguments: exports);
                   },
                 );
               },

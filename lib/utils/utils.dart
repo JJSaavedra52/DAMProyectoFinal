@@ -16,7 +16,7 @@ Future<void> launchURL(BuildContext context, ScanModel scan) async {
   final Uri uriUrl = Uri.parse(url);
   if (scan.tipo == 'http') {
     if (!await launchUrl(uriUrl)) {
-      throw Exception('Could not launch $uriUrl');
+      throw Exception('Could not launch  $uriUrl');
     }
   } else if (scan.tipo == 'geo') {
     final pointA = (await ScanListProvider.geoLocalizar()).toLatLng();
